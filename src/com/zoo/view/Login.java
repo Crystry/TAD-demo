@@ -18,12 +18,15 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.event.ActionEvent;
+import java.beans.EventHandler;
 import java.sql.SQLException;
 
 public class Login extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    //Todo 代码全部写在一个方法中会比较臃肿，建议将其中的代码分离出来写在其他方法中
     @Override
     public void start(Stage primaryStage) throws Exception{
         GridPane gr =new GridPane();
@@ -81,6 +84,8 @@ public class Login extends Application {
 
         primaryStage.show();
 
+        //TODO 对于多次调用的接口，如下方的EventHandler，
+        // 可以考虑有没有更好的方式去简化代码，而不是使用很多个匿名内部类，避免代码过于臃肿
         //设置清除按键效果
         clear.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -119,7 +124,7 @@ public class Login extends Application {
                                     e.printStackTrace();
                                 }
                                 try {
-
+                                    //TODO 无用的代码建议删掉
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }

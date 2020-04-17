@@ -169,8 +169,13 @@ public class UserWay {
 
     }
 
+    //TODO 这些代码不属于对于数据库的操作，建议放在controller中
+    //TODO 对于常量的话建议写在常量类中，命名一定要有意义，要清晰明了
+    //TODO 有没有发现你下面的两段代码实质是相同的，思考一下如何简化下面的代码，时间充足的话可以去了解一下责任链，
+    // 现在这里只是说是有三种角色，如果我后面有很多很多的角色，那前面岂不是要有很多的if
     public boolean judgeAttribute1(String aIdentity) {
         String Boss="Chief";
+        //TODO 师弟飘黄了哦，思考一下为神马要飘黄呢，改正一下
         if (aIdentity == Boss) {
             return true;
 

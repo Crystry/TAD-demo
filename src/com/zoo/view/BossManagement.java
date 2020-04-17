@@ -21,7 +21,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
-
+//TODO 这里需要注意的问题和AttributeManagement类似
 public class BossManagement {
     private final Stage stage = new Stage();
 
