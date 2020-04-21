@@ -1,27 +1,25 @@
 package com.zoo.view;
 /*
+@author 黄浩
 注册界面
  */
 
-import com.zoo.controller.UserAction;
-import com.zoo.model.User;
-import com.zoo.controller.ZooUtil;
-import com.zoo.util.UserWay;
-import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.zoo.bean.User;
+import com.zoo.util.ZooUtil;
+import com.zoo.model.UserDao;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class Register {
+    private Integer DEFAULT_HEIGHT=300,DEFAULT_WIDTH=500;
+    private Integer DEFAULT_FONT=14;
+    private Integer DEFAULT_HGAP=5,DEFAULT_VGAP=17;
     private final Stage stage=new Stage();
     public Register(){
         GridPane gr =new GridPane();
@@ -29,19 +27,19 @@ public class Register {
 
         Scene scene=new Scene(gr);
         stage.setScene(scene);
-        stage.setTitle("Login");
-        stage.setHeight(300);
-        stage.setWidth(500);
+        stage.setTitle("Register");
+        stage.setHeight(DEFAULT_HEIGHT);
+        stage.setWidth(DEFAULT_WIDTH);
         stage.setResizable(false);
 
         Label labelName=new Label("请设置用户名：");
-        labelName.setFont(Font.font(14));
+        labelName.setFont(Font.font(DEFAULT_FONT));
 
         Label labelPassword=new Label("请设置密码：");
-        labelPassword.setFont(Font.font(14));
+        labelPassword.setFont(Font.font(DEFAULT_FONT));
 
         Label labelPassword1=new Label("请重新输入密码：");
-        labelPassword.setFont(Font.font(14));
+        labelPassword.setFont(Font.font(DEFAULT_FONT));
 
         Button register =new Button("注册");
 
@@ -63,48 +61,33 @@ public class Register {
         gr.add(register, 2,3);
         gr.setAlignment(Pos.CENTER);
 
-        gr.setHgap(5);
-        gr.setVgap(17);
+        gr.setHgap(DEFAULT_HGAP);
+        gr.setVgap(DEFAULT_VGAP);
 
-        UserWay way=new UserWay();
+        UserDao dao=new UserDao();
 
         stage.show();
         //注册按钮
-        register.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
+        register.setOnAction(actionEvent->{
                 Connection conn= ZooUtil.getConnection();
                 String name=textFieldName.getText();          //获取文本上的字符
                 String password=passwordFieldName.getText();
                 String password1=passwordFieldName1.getText();
-
-                if(password.equals(password1)){
-                    UserAction action=new UserAction();
+                if(name!=null&&password!=null){
+                    stage.setTitle("用户名或者密码为空！");
+                }else if(password.equals(password1)){
                     User user=new User();
                     user.setName(name);
                     user.setPassword(password);
                     user.setIdentity("Tourist");
                     user.setAttribute("Tourist");
-                    try {
-                        action.add(user);   //  调用增加游客的方法
-                        stage.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
+                    dao.addUser(user);   //  调用增加游客的方法
+                    stage.close();
                 }else{
                     stage.setTitle("密码输入不相同，请重新输入");
                     passwordFieldName.setText("");
                     passwordFieldName1.setText("");
-                    FadeTransition fade =new FadeTransition();
-                    fade.setDuration(Duration.seconds(0.1));
-                    fade.setNode(gr);
-                    fade.setFromValue(0);
-                    fade.setToValue(1);
-                    fade.play();
-
                 }
-            }
         });
     }
 

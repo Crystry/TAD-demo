@@ -1,19 +1,23 @@
-package com.zoo.model;
+package com.zoo.bean;
+/*
+@author 黄浩
+动物的实体类
+ */
 
 import javafx.beans.property.SimpleStringProperty;
 
 public class Animal {
 
-    private final SimpleStringProperty AnimalName=new SimpleStringProperty(this,"AnimalName");
-    private  final SimpleStringProperty AnimalType=new SimpleStringProperty(this,"AnimalType");
-    private final SimpleStringProperty AnimalSex=new SimpleStringProperty(this,"AnimalSex");
-    private final SimpleStringProperty AnimalAge=new SimpleStringProperty(this,"AnimalAge");
-    private final SimpleStringProperty AnimalIntroduction=new SimpleStringProperty(this,"AnimalIntroduction");
-    private final SimpleStringProperty AnimalPresentSituation=new SimpleStringProperty(this,"AnimalPresentSituation");
-    private final SimpleStringProperty AnimalKeeper=new SimpleStringProperty(this,"AnimalKeeper");
+    private final SimpleStringProperty animalName=new SimpleStringProperty(this,"AnimalName");
+    private  final SimpleStringProperty animalType=new SimpleStringProperty(this,"AnimalType");
+    private final SimpleStringProperty animalSex=new SimpleStringProperty(this,"AnimalSex");
+    private final SimpleStringProperty animalAge=new SimpleStringProperty(this,"AnimalAge");
+    private final SimpleStringProperty animalIntroduction=new SimpleStringProperty(this,"AnimalIntroduction");
+    private final SimpleStringProperty animalPresentSituation=new SimpleStringProperty(this,"AnimalPresentSituation");
+    private final SimpleStringProperty animalKeeper=new SimpleStringProperty(this,"AnimalKeeper");
 
     public SimpleStringProperty animalNameProperty() {
-        return AnimalName;
+        return animalName;
     }
 
     public final String getAnimalName() {
@@ -25,7 +29,7 @@ public class Animal {
     }
 
     public SimpleStringProperty animalTypeProperty() {
-        return AnimalType;
+        return animalType;
     }
 
     public final String getAnimalType() {
@@ -37,7 +41,7 @@ public class Animal {
     }
 
     public SimpleStringProperty animalSexProperty() {
-        return AnimalSex;
+        return animalSex;
     }
 
     public final String getAnimalSex() {
@@ -49,7 +53,7 @@ public class Animal {
     }
 
     public SimpleStringProperty animalAgeProperty() {
-        return AnimalAge;
+        return animalAge;
     }
 
     public final String getAnimalAge() {
@@ -61,7 +65,7 @@ public class Animal {
     }
 
     public SimpleStringProperty animalIntroductionProperty() {
-        return AnimalIntroduction;
+        return animalIntroduction;
     }
 
     public final String getAnimalIntroduction() {
@@ -73,7 +77,7 @@ public class Animal {
     }
 
     public SimpleStringProperty animalPresentSituationProperty() {
-        return AnimalPresentSituation;
+        return animalPresentSituation;
     }
 
     public final String getAnimalPresentSituation() {
@@ -85,7 +89,7 @@ public class Animal {
     }
 
     public SimpleStringProperty animalKeeperProperty() {
-        return AnimalKeeper;
+        return animalKeeper;
     }
 
     public final String getAnimalKeeper() {
@@ -99,15 +103,15 @@ public class Animal {
     public Animal(){
 
     }
-    public Animal(String aAnimalName,String aAnimalType ,String aAnimalSex,String aAnimalAge,
-                  String aAnimalIntroduction, String aPresentSituation,String aAnimalKeeper){
-        setAnimalName(aAnimalName);
-        setAnimalType(aAnimalType);
-        setAnimalSex(aAnimalSex);
-        setAnimalAge(aAnimalAge);
-        setAnimalIntroduction(aAnimalIntroduction);
-        setAnimalPresentSituation(aPresentSituation);
-        setAnimalKeeper(aAnimalKeeper);
+    public Animal(String AnimalName,String AnimalType ,String AnimalSex,String AnimalAge,
+                  String AnimalIntroduction, String PresentSituation,String AnimalKeeper){
+        setAnimalName(AnimalName);
+        setAnimalType(AnimalType);
+        setAnimalSex(AnimalSex);
+        setAnimalAge(AnimalAge);
+        setAnimalIntroduction(AnimalIntroduction);
+        setAnimalPresentSituation(PresentSituation);
+        setAnimalKeeper(AnimalKeeper);
     }
 
 

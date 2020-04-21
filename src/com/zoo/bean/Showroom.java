@@ -1,17 +1,21 @@
-package com.zoo.model;
+package com.zoo.bean;
+/*
+@author 黄浩
+展厅的实体类
+ */
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Showroom {
-    private final StringProperty ShowroomName=new SimpleStringProperty(this,"ShowroomName");
-    private final StringProperty ShowroomIntroduction=new SimpleStringProperty(this,"ShowroomIntroduction");
-    private final StringProperty ShowroomLocation=new SimpleStringProperty(this,"ShowroomLocation");
-    private final StringProperty ShowroomLocationSize=new SimpleStringProperty(this,"ShowroomLocationSize");
-    private final StringProperty ShowroomKeeper=new SimpleStringProperty(this,"ShowroomKeeper");
+    private final StringProperty showroomName=new SimpleStringProperty(this,"ShowroomName");
+    private final StringProperty showroomIntroduction=new SimpleStringProperty(this,"ShowroomIntroduction");
+    private final StringProperty showroomLocation=new SimpleStringProperty(this,"ShowroomLocation");
+    private final StringProperty showroomLocationSize=new SimpleStringProperty(this,"ShowroomLocationSize");
+    private final StringProperty showroomKeeper=new SimpleStringProperty(this,"ShowroomKeeper");
 
     public StringProperty showroomNameProperty() {
-        return ShowroomName;
+        return showroomName;
     }
 
     public final String getShowroomName() {
@@ -23,7 +27,7 @@ public class Showroom {
     }
 
     public StringProperty showroomIntroductionProperty() {
-        return ShowroomIntroduction;
+        return showroomIntroduction;
     }
 
     public String getShowroomIntroduction() {
@@ -35,7 +39,7 @@ public class Showroom {
     }
 
     public StringProperty showroomLocationProperty() {
-        return ShowroomLocation;
+        return showroomLocation;
     }
 
     public String getShowroomLocation() {
@@ -47,11 +51,11 @@ public class Showroom {
     }
 
     public StringProperty showroomLocationSizeProperty() {
-        return ShowroomLocationSize;
+        return showroomLocationSize;
     }
 
     public String getShowroomLocationSize() {
-        return ShowroomLocationSize.get();
+        return showroomLocationSize.get();
     }
 
     public void setShowroomLocationSize(String showroomLocationSize) {
@@ -59,7 +63,7 @@ public class Showroom {
     }
 
     public StringProperty showroomKeeperProperty() {
-        return ShowroomKeeper;
+        return showroomKeeper;
     }
 
     public String getShowroomKeeper() {
@@ -73,14 +77,14 @@ public class Showroom {
     public Showroom(){
 
     }
-    public Showroom(String aShowroomName,String aShowroomIntroduction,
-                    String aShowroomLocation,String aShowroomLocationSize,
-                    String aShowroomKeeper){
-        setShowroomName(aShowroomName);
-        setShowroomIntroduction(aShowroomIntroduction);
-        setShowroomLocation(aShowroomLocation);
-        setShowroomLocationSize(aShowroomLocationSize);
-        setShowroomKeeper(aShowroomKeeper);
+    public Showroom(String ShowroomName,String ShowroomIntroduction,
+                    String ShowroomLocation,String ShowroomLocationSize,
+                    String ShowroomKeeper){
+        setShowroomName(ShowroomName);
+        setShowroomIntroduction(ShowroomIntroduction);
+        setShowroomLocation(ShowroomLocation);
+        setShowroomLocationSize(ShowroomLocationSize);
+        setShowroomKeeper(ShowroomKeeper);
 
     }
 

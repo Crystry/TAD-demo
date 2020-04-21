@@ -1,14 +1,13 @@
 package com.zoo.view;
 /*
+@author 黄浩
 登录界面，
  */
 
-import com.zoo.util.UserWay;
+import com.zoo.model.UserDao;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,36 +17,39 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.event.ActionEvent;
-import java.beans.EventHandler;
-import java.sql.SQLException;
-
 public class Login extends Application {
+    private Integer DEFAULT_HEIGHT=300,DEFAULT_WIDTH=500;
+    private Integer DEFAULT_FONT=14;
+    private Integer DEFAULT_HGAP=2,DEFAULT_VGAP=10;
+    private double DEFAULT_Seconds=0.1,DEFAULT_FromValue=0,DEFAULT_ToValue=1;
+
+
+
     public static void main(String[] args) {
         launch(args);
     }
     //Todo 代码全部写在一个方法中会比较臃肿，建议将其中的代码分离出来写在其他方法中
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         GridPane gr =new GridPane();
         gr.setStyle("-fx-background-color: #FFF5EE");
 
         Scene scene=new Scene(gr);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Login");
-        primaryStage.setHeight(300);
-        primaryStage.setWidth(500);
+        primaryStage.setHeight(DEFAULT_HEIGHT);
+        primaryStage.setWidth(DEFAULT_WIDTH);
         primaryStage.setResizable(false);
+        primaryStage.show();
 
         Label labelName=new Label("用户名：");
-        labelName.setFont(Font.font(14));
+        labelName.setFont(Font.font(DEFAULT_FONT));
 
         Label labelPassword=new Label("密码：");
-        labelPassword.setFont(Font.font(14));
+        labelPassword.setFont(Font.font(DEFAULT_FONT));
 
         Label labelAttribute=new Label("身份：");
-        labelPassword.setFont(Font.font(14));
-
+        labelPassword.setFont(Font.font(DEFAULT_FONT));
 
         TextField textFieldName =new TextField();
         textFieldName.setPromptText("请输入用户名：");
@@ -77,60 +79,53 @@ public class Login extends Application {
 
         gr.setAlignment(Pos.CENTER);
 
-        gr.setHgap(2);
-        gr.setVgap(10);
+        gr.setHgap(DEFAULT_HGAP);
+        gr.setVgap(DEFAULT_VGAP);
 
         GridPane.setMargin(login,new Insets(0,0,0,120));
-
-        primaryStage.show();
 
         //TODO 对于多次调用的接口，如下方的EventHandler，
         // 可以考虑有没有更好的方式去简化代码，而不是使用很多个匿名内部类，避免代码过于臃肿
         //设置清除按键效果
-        clear.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
+        clear.setOnAction(actionEvent->{
                 textFieldName.setText("");
                 passwordFieldName.setText("");
-            }
         });
+
         //登录按键效果
-        login.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
+        login.setOnAction(actionEvent->{
                 String name=textFieldName.getText();                   //获取文本上的内容
                 String password=passwordFieldName.getText();
                 String identity= (String) choiceBox.getValue();
-                UserWay way=new UserWay();
+                UserDao way=new UserDao();
+
+                //闪动的画面
+                FadeTransition fade =new FadeTransition();
+                fade.setDuration(Duration.seconds(DEFAULT_Seconds));
+                fade.setNode(gr);
+                fade.setFromValue(DEFAULT_FromValue);
+                fade.setToValue(DEFAULT_ToValue);
 
                 if(way.selectName(name)) {                              //与数据库的信息进行判断
                     if (way.selectPassword(name,password)) {
                         if (way.selectIdentity(name,identity)) {
                             System.out.println("登录成功");
                             primaryStage.close();
-                            if (way.judgeAttribute1(identity)) {       //判断是否为Boss
+                             if (identity.equals("Chief")) {       //判断是否为Boss
+                                 try {
+                                     BossPage bossPage =new BossPage();//打开Boss界面
+                                 } catch (Exception e) {
+                                     e.printStackTrace();
+                                 }
+                             }else if (identity.equals("Tourist")) {        //判断是否为游客
                                 try {
-                                    BossManagement bossManagement=new BossManagement();//打开Boss界面
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                            }else if (way.judgeAttribute2(identity)) {        //判断是否为游客
-                                try {
-                                    ShowroomManagement showroomManagement=new ShowroomManagement();//打开游客界面
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                try {
-                                    //TODO 无用的代码建议删掉
+                                    ShowroomPage showroomPage =new ShowroomPage();//打开游客界面
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }else {                 //管理员
                                 try {
-                                    AttributeManagement attributeManagement =new AttributeManagement(name);//打开管理员界面
+                                    AttributePage attributePage =new AttributePage(name);//打开管理员界面
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -138,11 +133,6 @@ public class Login extends Application {
                         }
                         else {
                             primaryStage.setTitle("身份选择错误，请重新选择！");
-                            FadeTransition fade =new FadeTransition();
-                            fade.setDuration(Duration.seconds(0.1));
-                            fade.setNode(gr);
-                            fade.setFromValue(0);
-                            fade.setToValue(1);
                             fade.play();
                         }
                     }
@@ -150,12 +140,6 @@ public class Login extends Application {
                         primaryStage.setTitle("密码错误");
                         System.out.println("登录失败");
                         passwordFieldName.setText("");
-
-                        FadeTransition fade =new FadeTransition();
-                        fade.setDuration(Duration.seconds(0.1));
-                        fade.setNode(gr);
-                        fade.setFromValue(0);
-                        fade.setToValue(1);
                         fade.play();
 
                     }
@@ -163,24 +147,12 @@ public class Login extends Application {
                     primaryStage.setTitle("这个Id不存在，请注册！");
                     textFieldName.setText("");
                     passwordFieldName.setText("");
-                    FadeTransition fade =new FadeTransition();
-                    fade.setDuration(Duration.seconds(0.1));
-                    fade.setNode(gr);
-                    fade.setFromValue(0);
-                    fade.setToValue(1);
                     fade.play();
-
-
-                }
             }
         });
         //注册按钮
-        register.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Register register=new Register();
-                primaryStage.setTitle("注册成功！");
-            }
+        register.setOnAction(actionEvent->{
+                Register register1=new Register();
         });
     }
 }
