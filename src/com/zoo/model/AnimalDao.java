@@ -13,14 +13,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO util层一般放的是工具类，对数据库的操作一般是放在model层，util包中的其他文件也是一样的哦，
-// 以及师弟，注意一下你的文件的命名，文件命名一般要求明了，（我最初看到你的这个命名不知道里面写的是什么），
-// 建议修改一下你的文件命名
 public class AnimalDao {
     //添加新的动物
-
-    //TODO 关于数据库异常的处理，一般的话就是直接在这里try catch处理掉，不建议的话再往外抛，
-    // 如果可以的话，对于增加删除等操作的话操作成功之后给外部一些反馈，不然人家不知道到底增加或删除成功没
     public  void addAnimal(Animal animal) {
             Connection conn = ZooUtil.getConnection();
             PreparedStatement ptmt = null;

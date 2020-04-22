@@ -1,5 +1,8 @@
 package com.zoo.view;
-
+/*
+@author 黄浩
+龙妈页面的布局，将上部与中部分开两个方法，
+ */
 import com.zoo.bean.Showroom;
 import com.zoo.bean.User;
 import com.zoo.model.ShowroomDao;

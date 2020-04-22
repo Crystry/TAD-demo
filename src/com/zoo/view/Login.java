@@ -24,12 +24,9 @@ public class Login extends Application {
     private Integer DEFAULT_HGAP=2,DEFAULT_VGAP=10;
     private double DEFAULT_Seconds=0.1,DEFAULT_FromValue=0,DEFAULT_ToValue=1;
 
-
-
     public static void main(String[] args) {
         launch(args);
     }
-    //Todo 代码全部写在一个方法中会比较臃肿，建议将其中的代码分离出来写在其他方法中
     @Override
     public void start(Stage primaryStage) {
         GridPane gr =new GridPane();
@@ -83,8 +80,6 @@ public class Login extends Application {
 
         GridPane.setMargin(login,new Insets(0,0,0,120));
 
-        //TODO 对于多次调用的接口，如下方的EventHandler，
-        // 可以考虑有没有更好的方式去简化代码，而不是使用很多个匿名内部类，避免代码过于臃肿
         //设置清除按键效果
         clear.setOnAction(actionEvent->{
                 textFieldName.setText("");

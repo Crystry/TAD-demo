@@ -1,4 +1,8 @@
 package com.zoo.view;
+/*
+@author 黄浩
+管理员页面的布局，将上部与中部分开两个方法，
+ */
 
 import com.zoo.bean.Animal;
 import com.zoo.bean.Showroom;
@@ -140,7 +144,6 @@ public class AttributePageLayout {
                 addAnimalKeeper, addButton, updateButton, deleteButton);
         VBox vBox = new VBox(table, hBox1);
         addButton.setOnAction(actionEvent -> {
-            //TODO 建议修改一下命名方式哦
             Animal animal = new Animal();
             animal.setAnimalName(addAnimalName.getText());
             animal.setAnimalType(addAnimalType.getText());
