@@ -22,7 +22,7 @@ public class ShowroomPage {
     private Integer DEFAULT_StageHeight=600;
     private Integer DEFAULT_StageWidth=1500;
     private Integer DEFAULT_HEIGHT=250;
-    public ShowroomPage() throws Exception {
+    public ShowroomPage()  {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root);
         //顶部，游客选择想要查询的展厅
@@ -33,7 +33,6 @@ public class ShowroomPage {
         Button Search=new Button("查询");
         HBox hBox=new HBox();
         hBox.getChildren().addAll(choiceBox,Search);
-        root.setTop(hBox);
         TableView<Showroom> table = new TableView<>();
         table.setMaxHeight(DEFAULT_HEIGHT);
         TableColumn<Showroom, String> first = new TableColumn<>("ShowroomName");
@@ -58,7 +57,7 @@ public class ShowroomPage {
         VBox vBox=new VBox(hBox,table);
         //中部，展现游客想要查看的动物的信息
         root.setTop(vBox);
-        Stage mStage =new Stage();
+        Stage mStage = new Stage();
         mStage.setScene(scene);
         mStage.setTitle("管理系统");
         mStage.setHeight(DEFAULT_StageHeight);
@@ -99,7 +98,7 @@ public class ShowroomPage {
                 }
                 System.out.println(animalType);
                 root.setCenter(table1);
-                mStage.show();
+               // mStage.show();
         });
     }
 }

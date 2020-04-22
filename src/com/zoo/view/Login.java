@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
 public class Login extends Application {
     private Integer DEFAULT_HEIGHT=300,DEFAULT_WIDTH=500;
     private Integer DEFAULT_FONT=14;
@@ -32,7 +33,7 @@ public class Login extends Application {
     @Override
     public void start(Stage primaryStage) {
         GridPane gr =new GridPane();
-        gr.setStyle("-fx-background-color: #FFF5EE");
+         gr.setStyle("-fx-background-color: #FFF5EE");
 
         Scene scene=new Scene(gr);
         primaryStage.setScene(scene);
@@ -44,10 +45,8 @@ public class Login extends Application {
 
         Label labelName=new Label("用户名：");
         labelName.setFont(Font.font(DEFAULT_FONT));
-
         Label labelPassword=new Label("密码：");
         labelPassword.setFont(Font.font(DEFAULT_FONT));
-
         Label labelAttribute=new Label("身份：");
         labelPassword.setFont(Font.font(DEFAULT_FONT));
 
@@ -141,7 +140,6 @@ public class Login extends Application {
                         System.out.println("登录失败");
                         passwordFieldName.setText("");
                         fade.play();
-
                     }
                 }else {
                     primaryStage.setTitle("这个Id不存在，请注册！");

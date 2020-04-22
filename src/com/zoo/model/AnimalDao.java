@@ -21,66 +21,66 @@ public class AnimalDao {
 
     //TODO 关于数据库异常的处理，一般的话就是直接在这里try catch处理掉，不建议的话再往外抛，
     // 如果可以的话，对于增加删除等操作的话操作成功之后给外部一些反馈，不然人家不知道到底增加或删除成功没
-    public void addAnimal(Animal animal)  {
-        Connection conn = ZooUtil.getConnection();
-        PreparedStatement ptmt = null;
-        try {
-            String sql = "" +
-                    " insert into animal " +
-                    " (AnimalName,AnimalType,AnimalSex,AnimalAge,AnimalIntroduction,AnimalPresentSituation, " +
-                    " AnimalKeeper) " +
-                    " values( " +
-                    " ?,?,?,?,?,?,?) ";
-            ptmt = conn.prepareStatement(sql);
-            ptmt.setString(1, animal.getAnimalName());
-            ptmt.setString(2, animal.getAnimalType());
-            ptmt.setString(3, animal.getAnimalSex());
-            ptmt.setString(4, animal.getAnimalAge());
-            ptmt.setString(5, animal.getAnimalIntroduction());
-            ptmt.setString(6, animal.getAnimalPresentSituation());
-            ptmt.setString(7, animal.getAnimalKeeper());
-            ptmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+    public  void addAnimal(Animal animal) {
+            Connection conn = ZooUtil.getConnection();
+            PreparedStatement ptmt = null;
             try {
-                conn.close();
+                String sql = "" +
+                        " insert into animal " +
+                        " (AnimalName,AnimalType,AnimalSex,AnimalAge,AnimalIntroduction,AnimalPresentSituation, " +
+                        " AnimalKeeper) " +
+                        " values( " +
+                        " ?,?,?,?,?,?,?) ";
+                ptmt = conn.prepareStatement(sql);
+                ptmt.setString(1, animal.getAnimalName());
+                ptmt.setString(2, animal.getAnimalType());
+                ptmt.setString(3, animal.getAnimalSex());
+                ptmt.setString(4, animal.getAnimalAge());
+                ptmt.setString(5, animal.getAnimalIntroduction());
+                ptmt.setString(6, animal.getAnimalPresentSituation());
+                ptmt.setString(7, animal.getAnimalKeeper());
+                ptmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
     //更新动物
-    public void updateAnimal(Animal animal)  {
-        Connection conn = ZooUtil.getConnection();
-        String sql = "" +
-                " update  animal " +
-                " set  AnimalType=?,AnimalSex=?,AnimalAge=?,AnimalIntroduction=?, " +
-                " AnimalPresentSituation=?,AnimalKeeper=? " +
-                " where AnimalName=? ";
-        PreparedStatement ptmt = null;
-        try {
-            ptmt = conn.prepareStatement(sql);
-            ptmt.setString(1, animal.getAnimalType());
-            ptmt.setString(2, animal.getAnimalSex());
-            ptmt.setString(3, animal.getAnimalAge());
-            ptmt.setString(4, animal.getAnimalIntroduction());
-            ptmt.setString(5, animal.getAnimalPresentSituation());
-            ptmt.setString(6, animal.getAnimalKeeper());
-            ptmt.setString(7, animal.getAnimalName());
-            ptmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+    public  void updateAnimal(Animal animal) {
+            Connection conn = ZooUtil.getConnection();
+            String sql = "" +
+                    " update  animal " +
+                    " set  AnimalType=?,AnimalSex=?,AnimalAge=?,AnimalIntroduction=?, " +
+                    " AnimalPresentSituation=?,AnimalKeeper=? " +
+                    " where AnimalName=? ";
+            PreparedStatement ptmt = null;
             try {
-                conn.close();
+                ptmt = conn.prepareStatement(sql);
+                ptmt.setString(1, animal.getAnimalType());
+                ptmt.setString(2, animal.getAnimalSex());
+                ptmt.setString(3, animal.getAnimalAge());
+                ptmt.setString(4, animal.getAnimalIntroduction());
+                ptmt.setString(5, animal.getAnimalPresentSituation());
+                ptmt.setString(6, animal.getAnimalKeeper());
+                ptmt.setString(7, animal.getAnimalName());
+                ptmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        }
     }
     //删除动物
-    public void deleteAnimal(String AnimalName)  {
+    public  void deleteAnimal(String AnimalName)  {
         Connection conn = ZooUtil.getConnection();
         String sql = "" +
                 " delete from animal " +
@@ -99,7 +99,7 @@ public class AnimalDao {
                 e.printStackTrace();
             }
         }
-    }
+        }
 
     //查询全部
     public List<Animal> query()  {

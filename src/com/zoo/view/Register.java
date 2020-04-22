@@ -73,21 +73,23 @@ public class Register {
                 String name=textFieldName.getText();          //获取文本上的字符
                 String password=passwordFieldName.getText();
                 String password1=passwordFieldName1.getText();
-                if(name!=null&&password!=null){
-                    stage.setTitle("用户名或者密码为空！");
-                }else if(password.equals(password1)){
-                    User user=new User();
-                    user.setName(name);
-                    user.setPassword(password);
-                    user.setIdentity("Tourist");
-                    user.setAttribute("Tourist");
-                    dao.addUser(user);   //  调用增加游客的方法
-                    stage.close();
-                }else{
-                    stage.setTitle("密码输入不相同，请重新输入");
-                    passwordFieldName.setText("");
-                    passwordFieldName1.setText("");
-                }
+                if(name!=null &&password!=null) {
+                    if (password.equals(password1)) {
+                        User user = new User();
+                        user.setName(name);
+                        user.setPassword(password);
+                        user.setIdentity("Tourist");
+                        user.setAttribute("Tourist");
+                        dao.addUser(user);   //  调用增加游客的方法
+                        stage.close();
+                    } else {
+                        stage.setTitle("密码输入不相同，请重新输入");
+                        passwordFieldName.setText("");
+                        passwordFieldName1.setText("");
+                    }
+                }else {
+                        stage.setTitle("用户名或者密码为空！");
+                    }
         });
     }
 
