@@ -21,6 +21,7 @@ public class Register {
     private Integer DEFAULT_FONT=14;
     private Integer DEFAULT_HGAP=5,DEFAULT_VGAP=17;
     private final Stage stage=new Stage();
+    //TODO 构造器中的代码可以思考一下能不能将他分离出来
     public Register(){
         GridPane gr =new GridPane();
         gr.setStyle("-fx-background-color: #FFF5EE");

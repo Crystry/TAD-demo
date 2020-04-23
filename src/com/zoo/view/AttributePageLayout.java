@@ -116,6 +116,7 @@ public class AttributePageLayout {
         seventh.setCellValueFactory(new PropertyValueFactory<>("AnimalKeeper"));
         table.getColumns().addAll(first, second, third, forth, fifth, sixth, seventh);
 
+        //TODO 一般来说view层应该避免和数据库直接操作，师弟可以再去了解一下MVC架构
         AnimalDao dao1 = new AnimalDao();
         table.getItems().addAll(dao1.get(ShowroomKeeper));
 

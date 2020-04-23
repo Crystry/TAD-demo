@@ -57,6 +57,7 @@ public class ShowroomPage {
         VBox vBox=new VBox(hBox,table);
         //中部，展现游客想要查看的动物的信息
         root.setTop(vBox);
+        //TODO 关于这部分代码师弟后面好像有封装，可以思考一下这里可不可以同样使用呢
         Stage mStage = new Stage();
         mStage.setScene(scene);
         mStage.setTitle("管理系统");

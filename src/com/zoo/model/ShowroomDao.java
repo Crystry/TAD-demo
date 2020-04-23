@@ -96,6 +96,7 @@ public class ShowroomDao {
         Connection conn = ZooUtil.getConnection();
         Statement stmt = null;
         ResultSet rs=null;
+        //TODO 师弟可以去了解一下这个ObservableList与其他的list有什么特别的地方
         ObservableList<Showroom> showroom = FXCollections.observableArrayList();
         try {
             stmt = conn.createStatement();

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AnimalDao {
+    //TODO 下面关闭连接的代码挺多地方都是相同的，可以考虑一下能不能把他封装一下
     //添加新的动物
     public  void addAnimal(Animal animal) {
             Connection conn = ZooUtil.getConnection();

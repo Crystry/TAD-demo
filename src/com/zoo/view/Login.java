@@ -19,6 +19,7 @@ import javafx.util.Duration;
 
 
 public class Login extends Application {
+    //TODO 建议的话即使是同一个类型也写成两行，以及定义常量的话师弟可以去了解一下如何定义常量
     private Integer DEFAULT_HEIGHT=300,DEFAULT_WIDTH=500;
     private Integer DEFAULT_FONT=14;
     private Integer DEFAULT_HGAP=2,DEFAULT_VGAP=10;
@@ -105,6 +106,8 @@ public class Login extends Application {
                         if (way.selectIdentity(name,identity)) {
                             System.out.println("登录成功");
                             primaryStage.close();
+                            // Todo 关于下面一部分的代码，师弟可以想一下有没有方式使他更优雅，
+                            //  以及这里的try catch语句可以想想能不能简化一下
                              if (identity.equals("Chief")) {       //判断是否为Boss
                                  try {
                                      BossPage bossPage =new BossPage();//打开Boss界面
