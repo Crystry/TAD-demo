@@ -4,7 +4,6 @@ package com.zoo.model;
 @author 黄浩
  */
 
-import com.zoo.util.MyDataSource;
 import com.zoo.bean.Animal;
 import com.zoo.util.ZooUtil;
 import java.sql.*;

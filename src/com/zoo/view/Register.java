@@ -4,18 +4,9 @@ package com.zoo.view;
 @author 黄浩
  */
 
-import com.zoo.bean.User;
-import com.zoo.controller.UserController;
-import com.zoo.util.ZooUtil;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.sql.Connection;
 
 public class Register {
     private int DEFAULT_HEIGHT=300;

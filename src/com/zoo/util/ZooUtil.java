@@ -4,8 +4,6 @@ package com.zoo.util;
 @author 黄浩
  */
 
-import com.mysql.cj.xdevapi.Collection;
-
 import java.sql.*;
 public class ZooUtil {
 
