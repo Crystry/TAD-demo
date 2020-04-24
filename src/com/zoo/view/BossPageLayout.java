@@ -1,12 +1,12 @@
 package com.zoo.view;
 /*
-@author 黄浩
 龙妈页面的布局，将上部与中部分开两个方法，
+@author 黄浩
  */
 import com.zoo.bean.Showroom;
 import com.zoo.bean.User;
-import com.zoo.model.ShowroomDao;
-import com.zoo.model.UserDao;
+import com.zoo.controller.ShowroomController;
+import com.zoo.controller.UserController;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class BossPageLayout {
-    private Integer DEFAULT_HEIGHT=250;
+    private int DEFAULT_HEIGHT=250;
     //龙妈界面的顶部，显示展厅的信息，对展厅进行增删改查
     public Node setPageTop(){
         final TextField addShowroomName = new TextField();
@@ -57,9 +57,9 @@ public class BossPageLayout {
 
         table1.getColumns().addAll(first1, second1, third1,forth1,fifth1);
 
-        ShowroomDao dao = new ShowroomDao();
+        ShowroomController showroomController = new ShowroomController();
         Showroom showroom = new Showroom();
-        table1.getItems().addAll(dao.query());
+        table1.getItems().addAll(showroomController.query());
         VBox vBox = new VBox(hBox, table1);
         //增加展厅按键
         addButton.setOnAction(actionEvent->{
@@ -68,9 +68,9 @@ public class BossPageLayout {
             showroom.setShowroomLocation(addShowroomLocation.getText());
             showroom.setShowroomLocationSize(addShowroomLocationSize.getText());
             showroom.setShowroomKeeper(addShowroomKeeper.getText());
-            dao.addShowroom(showroom);
+            showroomController.addShowroom(showroom);
             table1.getItems().clear();
-            table1.getItems().addAll(dao.query());
+            table1.getItems().addAll(showroomController.query());
             addShowroomName.clear();
             addShowroomIntroduction.clear();
             addShowroomLocation.clear();
@@ -80,9 +80,9 @@ public class BossPageLayout {
 
         //删除展厅
         deleteButton.setOnAction(actionEvent->{
-            dao.deleteShowroom(addShowroomName.getText());
+            showroomController.deleteShowroom(addShowroomName.getText());
             table1.getItems().clear();
-            table1.getItems().addAll(dao.query());
+            table1.getItems().addAll(showroomController.query());
             addShowroomName.clear();
         });
         //更新展厅
@@ -92,9 +92,9 @@ public class BossPageLayout {
             showroom.setShowroomLocation(addShowroomLocation.getText());
             showroom.setShowroomLocationSize(addShowroomLocationSize.getText());
             showroom.setShowroomKeeper(addShowroomKeeper.getText());
-            dao.updateShowroom(showroom);
+            showroomController.updateShowroom(showroom);
             table1.getItems().clear();
-            table1.getItems().addAll(dao.query());
+            table1.getItems().addAll(showroomController.query());
             addShowroomName.clear();
             addShowroomIntroduction.clear();
             addShowroomLocation.clear();
@@ -122,8 +122,8 @@ public class BossPageLayout {
         forth.setCellValueFactory(param->param.getValue().IdentityProperty());
 
         table.getColumns().addAll(first, second, third, forth);
-        UserDao dao1 = new UserDao();
-        table.getItems().addAll(dao1.query());
+        UserController userController = new UserController();
+        table.getItems().addAll(userController.query());
 
         final TextField Name = new TextField();
         Name.setPromptText("Name");
@@ -149,9 +149,9 @@ public class BossPageLayout {
             user.setPassword(Password.getText());
             user.setAttribute(attribute);
             user.setIdentity(Identity.getText());
-            dao1.addUser(user);
+            userController.addUser(user);
             table.getItems().clear();
-            table.getItems().addAll(dao1.query());
+            table.getItems().addAll(userController.query());
             Name.clear();
             Password.clear();
             Identity.clear();
@@ -163,9 +163,9 @@ public class BossPageLayout {
             user.setIdentity(Identity.getText());
             user.setAttribute("Administrator");
             user.setName(Name.getText());
-            dao1.updateUser(user);
+            userController.updateUser(user);
             table.getItems().clear();
-            table.getItems().addAll(dao1.query());
+            table.getItems().addAll(userController.query());
             Name.clear();
             Password.clear();
             Identity.clear();
@@ -173,9 +173,9 @@ public class BossPageLayout {
 
         //删除管理员
         delete.setOnAction(actionEvent->{
-            dao1.deleteUser(Name.getText());
+            userController.deleteUser(Name.getText());
             table.getItems().clear();
-            table.getItems().addAll(dao1.query());
+            table.getItems().addAll(userController.query());
             Name.clear();
         });
         return vBox1;

@@ -1,7 +1,7 @@
 package com.zoo.bean;
 /*
-@author 黄浩
 用户的实体类
+@author 黄浩
  */
 
 import javafx.beans.property.IntegerProperty;

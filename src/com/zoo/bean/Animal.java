@@ -1,7 +1,7 @@
 package com.zoo.bean;
 /*
-@author 黄浩
 动物的实体类
+@author 黄浩
  */
 
 import javafx.beans.property.SimpleStringProperty;
@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class Animal {
 
     private final SimpleStringProperty animalName=new SimpleStringProperty(this,"AnimalName");
-    private  final SimpleStringProperty animalType=new SimpleStringProperty(this,"AnimalType");
+    private final SimpleStringProperty animalType=new SimpleStringProperty(this,"AnimalType");
     private final SimpleStringProperty animalSex=new SimpleStringProperty(this,"AnimalSex");
     private final SimpleStringProperty animalAge=new SimpleStringProperty(this,"AnimalAge");
     private final SimpleStringProperty animalIntroduction=new SimpleStringProperty(this,"AnimalIntroduction");

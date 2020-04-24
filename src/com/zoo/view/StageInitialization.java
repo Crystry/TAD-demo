@@ -1,18 +1,22 @@
 package com.zoo.view;
+/*
+界面的封装
+@author 黄浩
+ */
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class StageInitialization {
-    private Integer DEFAULT_StageHeight=600;
-    private Integer DEFAULT_StageWidth=1500;
+    private int DEFAULT_StageHeight=600;
+    private int DEFAULT_StageWidth=1300;
     public StageInitialization(Scene scene){
-        //TODO 师弟可以再去了解一下局部变量和成员变量已经他们的命名方式
-        Stage mStage = new Stage();
-        mStage.setScene(scene);
-        mStage.setTitle("管理系统");
-        mStage.setHeight(DEFAULT_StageHeight);
-        mStage.setWidth(DEFAULT_StageWidth);
-        mStage.show();
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("管理系统");
+        stage.setHeight(DEFAULT_StageHeight);
+        stage.setWidth(DEFAULT_StageWidth);
+        stage.show();
     }
 }

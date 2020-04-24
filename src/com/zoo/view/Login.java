@@ -1,10 +1,10 @@
 package com.zoo.view;
 /*
-@author 黄浩
 登录界面，
+@author 黄浩
  */
 
-import com.zoo.model.UserDao;
+import com.zoo.controller.UserController;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -19,10 +19,11 @@ import javafx.util.Duration;
 
 
 public class Login extends Application {
-    //TODO 建议的话即使是同一个类型也写成两行，以及定义常量的话师弟可以去了解一下如何定义常量
-    private Integer DEFAULT_HEIGHT=300,DEFAULT_WIDTH=500;
-    private Integer DEFAULT_FONT=14;
-    private Integer DEFAULT_HGAP=2,DEFAULT_VGAP=10;
+    private int DEFAULT_HEIGHT=300;
+    private int DEFAULT_WIDTH=500;
+    private int DEFAULT_FONT=14;
+    private int DEFAULT_HGAP=2;
+    private int DEFAULT_VGAP=10;
     private double DEFAULT_Seconds=0.1,DEFAULT_FromValue=0,DEFAULT_ToValue=1;
 
     public static void main(String[] args) {
@@ -92,7 +93,7 @@ public class Login extends Application {
                 String name=textFieldName.getText();                   //获取文本上的内容
                 String password=passwordFieldName.getText();
                 String identity= (String) choiceBox.getValue();
-                UserDao way=new UserDao();
+                UserController userController =new UserController();
 
                 //闪动的画面
                 FadeTransition fade =new FadeTransition();
@@ -101,31 +102,15 @@ public class Login extends Application {
                 fade.setFromValue(DEFAULT_FromValue);
                 fade.setToValue(DEFAULT_ToValue);
 
-                if(way.selectName(name)) {                              //与数据库的信息进行判断
-                    if (way.selectPassword(name,password)) {
-                        if (way.selectIdentity(name,identity)) {
+                if(userController.selectName(name)) {                              //与数据库的信息进行判断
+                    if (userController.selectPassword(name,password)) {
+                        if (userController.selectIdentity(name,identity)) {
                             System.out.println("登录成功");
                             primaryStage.close();
-                            // Todo 关于下面一部分的代码，师弟可以想一下有没有方式使他更优雅，
-                            //  以及这里的try catch语句可以想想能不能简化一下
-                             if (identity.equals("Chief")) {       //判断是否为Boss
-                                 try {
-                                     BossPage bossPage =new BossPage();//打开Boss界面
-                                 } catch (Exception e) {
-                                     e.printStackTrace();
-                                 }
-                             }else if (identity.equals("Tourist")) {        //判断是否为游客
-                                try {
-                                    ShowroomPage showroomPage =new ShowroomPage();//打开游客界面
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            }else {                 //管理员
-                                try {
-                                    AttributePage attributePage =new AttributePage(name);//打开管理员界面
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                            switch (identity){
+                                case "Chief" :BossPage bossPage =new BossPage();break;
+                                case "Tourist" : ShowroomPage showroomPage =new ShowroomPage();break;
+                                default:AttributePage attributePage =new AttributePage(name);
                             }
                         }
                         else {
@@ -148,7 +133,7 @@ public class Login extends Application {
         });
         //注册按钮
         register.setOnAction(actionEvent->{
-                Register register1=new Register();
+                Register _register=new Register();
         });
     }
 }

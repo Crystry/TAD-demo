@@ -1,7 +1,7 @@
 package com.zoo.bean;
 /*
-@author 黄浩
 展厅的实体类
+@author 黄浩
  */
 
 import javafx.beans.property.SimpleStringProperty;

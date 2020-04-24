@@ -1,13 +1,13 @@
 package com.zoo.view;
 /*
-@author 黄浩
 管理员页面的布局，将上部与中部分开两个方法，
+@author 黄浩
  */
 
 import com.zoo.bean.Animal;
 import com.zoo.bean.Showroom;
-import com.zoo.model.AnimalDao;
-import com.zoo.model.ShowroomDao;
+import com.zoo.controller.AnimalController;
+import com.zoo.controller.ShowroomController;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -18,31 +18,31 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class AttributePageLayout {
-    private Integer DEFAULT_WIDTH=150;
-    private Integer DEFAULT_HEIGHT=50;
+    private int DEFAULT_WIDTH=150;
+    private int DEFAULT_HEIGHT=50;
     //管理员页面的顶部，显示查询自己展厅信息的表格还有信息
     public Node setPageTop(String ShowroomKeeper){
-        ShowroomDao dao=new ShowroomDao();
-        TableView<Showroom> table1 = new TableView<>();
+        ShowroomController showroomController=new ShowroomController();
+        TableView<Showroom> table = new TableView<Showroom>();
 
-        table1.setMaxHeight(DEFAULT_HEIGHT);
-        TableColumn<Showroom, String> first1 = new TableColumn<>("ShowroomName");
-        first1.setCellValueFactory(param->param.getValue().showroomNameProperty());
+        table.setMaxHeight(DEFAULT_HEIGHT);
+        TableColumn<Showroom, String> first = new TableColumn<>("ShowroomName");
+        first.setCellValueFactory(param->param.getValue().showroomNameProperty());
 
-        TableColumn<Showroom, String> second1 = new TableColumn<>("ShowroomIntroduction");
-        second1.setCellValueFactory(new PropertyValueFactory<>("ShowroomIntroduction"));
+        TableColumn<Showroom, String> second = new TableColumn<>("ShowroomIntroduction");
+        second.setCellValueFactory(param->param.getValue().showroomIntroductionProperty());
 
-        TableColumn<Showroom, String> third1 = new TableColumn<>("ShowroomLocation");
-        third1.setCellValueFactory(new PropertyValueFactory<>("ShowroomLocation"));
+        TableColumn<Showroom, String> third = new TableColumn<>("ShowroomLocation");
+        third.setCellValueFactory(param->param.getValue().showroomLocationProperty());
 
-        TableColumn<Showroom, String> forth1 = new TableColumn<>("ShowroomLocationSize");
-        forth1.setCellValueFactory(new PropertyValueFactory<>("ShowroomLocationSize"));
+        TableColumn<Showroom, String> forth = new TableColumn<>("ShowroomLocationSize");
+        forth.setCellValueFactory(param->param.getValue().showroomLocationSizeProperty());
 
-        TableColumn<Showroom, String> fifth1 = new TableColumn<>("ShowroomKeeper");
-        fifth1.setCellValueFactory(new PropertyValueFactory<>("ShowroomKeeper"));
+        TableColumn<Showroom, String> fifth = new TableColumn<>("ShowroomKeeper");
+        fifth.setCellValueFactory(param->param.getValue().showroomKeeperProperty());
 
-        table1.getColumns().addAll(first1, second1, third1,forth1,fifth1);
-        table1.getItems().addAll(dao.query(ShowroomKeeper));
+        table.getColumns().addAll(first, second, third,forth,fifth);
+        table.getItems().addAll(showroomController.query(ShowroomKeeper));
 
         TextField showroomName=new TextField();
         showroomName.setPromptText("请输入名称");
@@ -64,9 +64,11 @@ public class AttributePageLayout {
             showroom.setShowroomLocationSize(showroomLocationSize.getText());
             showroom.setShowroomKeeper(showroomKeeper.getText());
             showroom.setShowroomName(showroomName.getText());
-            dao.updateShowroom(showroom);
-            table1.getItems().clear();
-            table1.getItems().addAll(dao.query(ShowroomKeeper));
+
+            showroomController.updateShowroom(showroom);
+            table.getItems().clear();
+            table.getItems().addAll(showroomController.query(ShowroomKeeper));
+
             showroomName.clear();
             showroomIntroduction.clear();
             showroomLocation.clear();
@@ -75,8 +77,9 @@ public class AttributePageLayout {
         });
         HBox hBox=new HBox(showroomName,showroomIntroduction,showroomLocation,
                 showroomLocationSize,showroomKeeper,update);
-        VBox vBox=new VBox(hBox,table1);
+        VBox vBox=new VBox(hBox,table);
         return vBox;
+
     }
 
     //管理员页面的中部，显示自己管理的动物
@@ -85,40 +88,39 @@ public class AttributePageLayout {
 
         TableColumn<Animal, String> first = new TableColumn<>("AnimalName");
         first.setMinWidth(DEFAULT_WIDTH);
-        first.setCellValueFactory(new PropertyValueFactory<>("AnimalName"));
+        first.setCellValueFactory(param->param.getValue().animalNameProperty());
 
         TableColumn<Animal, String> second = new TableColumn<>("AnimalType");
         second.setMinWidth(DEFAULT_WIDTH);
-        second.setCellValueFactory(new PropertyValueFactory<>("AnimalType"));
+        second.setCellValueFactory(param->param.getValue().animalTypeProperty());
 
         TableColumn<Animal, String> third = new TableColumn<>("AnimalSex");
         third.setMinWidth(DEFAULT_WIDTH);
-        third.setCellValueFactory(new PropertyValueFactory<>("AnimalSex"));
+        third.setCellValueFactory(param->param.getValue().animalSexProperty());
 
 
         TableColumn<Animal, String> forth = new TableColumn<>("AnimalAge");
         forth.setMinWidth(DEFAULT_WIDTH);
-        forth.setCellValueFactory(new PropertyValueFactory<>("AnimalAge"));
+        forth.setCellValueFactory(param->param.getValue().animalAgeProperty());
 
 
         TableColumn<Animal, String> fifth = new TableColumn<>("AnimalIntroduction");
         fifth.setMinWidth(DEFAULT_WIDTH);
-        fifth.setCellValueFactory(new PropertyValueFactory<>("AnimalIntroduction"));
+        fifth.setCellValueFactory(param->param.getValue().animalIntroductionProperty());
 
 
         TableColumn<Animal, String> sixth = new TableColumn<>("AnimalPresentSituation");
         sixth.setMinWidth(DEFAULT_WIDTH);
-        sixth.setCellValueFactory(new PropertyValueFactory<>("AnimalPresentSituation"));
+        sixth.setCellValueFactory(param->param.getValue().animalPresentSituationProperty());
 
 
         TableColumn<Animal, String> seventh = new TableColumn<>("AnimalKeeper");
         seventh.setMinWidth(DEFAULT_WIDTH);
-        seventh.setCellValueFactory(new PropertyValueFactory<>("AnimalKeeper"));
+        seventh.setCellValueFactory(param->param.getValue().animalKeeperProperty());
         table.getColumns().addAll(first, second, third, forth, fifth, sixth, seventh);
 
-        //TODO 一般来说view层应该避免和数据库直接操作，师弟可以再去了解一下MVC架构
-        AnimalDao dao1 = new AnimalDao();
-        table.getItems().addAll(dao1.get(ShowroomKeeper));
+        AnimalController animalController = new AnimalController();
+        table.getItems().addAll(animalController.get(ShowroomKeeper));
 
         final TextField addAnimalName = new TextField();
         addAnimalName.setPromptText("AnimalName");
@@ -153,9 +155,11 @@ public class AttributePageLayout {
             animal.setAnimalIntroduction(addAnimalIntroduction.getText());
             animal.setAnimalPresentSituation(addAnimalPresentSituation.getText());
             animal.setAnimalKeeper(addAnimalKeeper.getText());
-            dao1.addAnimal(animal);
+
+            animalController.addAnimal(animal);
             table.getItems().clear();
-            table.getItems().addAll(dao1.get(ShowroomKeeper));
+            table.getItems().addAll(animalController.get(ShowroomKeeper));
+
             addAnimalName.clear();
             addAnimalAge.clear();
             addAnimalType.clear();
@@ -174,9 +178,11 @@ public class AttributePageLayout {
             animal.setAnimalPresentSituation(addAnimalPresentSituation.getText());
             animal.setAnimalKeeper(addAnimalKeeper.getText());
             animal.setAnimalName(addAnimalName.getText());
-            dao1.updateAnimal(animal);
+
+            animalController.updateAnimal(animal);
             table.getItems().clear();
-            table.getItems().addAll(dao1.get(ShowroomKeeper));
+            table.getItems().addAll(animalController.get(ShowroomKeeper));
+
             addAnimalName.clear();
             addAnimalAge.clear();
             addAnimalType.clear();
@@ -184,14 +190,13 @@ public class AttributePageLayout {
             addAnimalPresentSituation.clear();
             addAnimalIntroduction.clear();
             addAnimalSex.clear();
-
         });
         //删除按钮的实现
         deleteButton.setOnAction(actionEvent -> {
             String name = addAnimalName.getText();
-            dao1.deleteAnimal(name);
+            animalController.deleteAnimal(name);
             table.getItems().clear();
-            table.getItems().addAll(dao1.get(ShowroomKeeper));
+            table.getItems().addAll(animalController.get(ShowroomKeeper));
             addAnimalName.clear();
         });
         return vBox;
