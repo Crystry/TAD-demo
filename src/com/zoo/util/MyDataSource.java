@@ -17,7 +17,7 @@ public class MyDataSource implements DataSource {
 
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/zoo?serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASSWORD = "7758258";
+    private static final String PASSWORD = "123456";
     private static LinkedList<Connection> pool=new LinkedList<Connection>();
 
     static {
