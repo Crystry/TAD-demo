@@ -1,5 +1,5 @@
 package com.zoo.bean;
-/*
+/**
 动物的实体类
 @author 黄浩
  */

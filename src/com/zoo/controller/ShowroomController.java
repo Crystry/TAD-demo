@@ -1,5 +1,5 @@
 package com.zoo.controller;
-/*
+/**
 展厅方法的控制器
 @author 黄浩
  */

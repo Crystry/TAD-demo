@@ -1,5 +1,5 @@
 package com.zoo.bean;
-/*
+/**
 用户的实体类
 @author 黄浩
  */

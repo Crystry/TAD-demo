@@ -1,5 +1,5 @@
 package com.zoo.controller;
-/*
+/**
 动物方法的控制器
 @author 黄浩
  */

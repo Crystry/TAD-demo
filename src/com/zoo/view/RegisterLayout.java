@@ -1,4 +1,8 @@
 package com.zoo.view;
+/**
+ *注册页面的布局
+ * @author 黄浩
+ */
 
 import com.zoo.bean.User;
 import com.zoo.controller.UserController;

@@ -1,5 +1,5 @@
 package com.zoo.view;
-/*
+/**
 龙妈页面的布局，将上部与中部分开两个方法，
 @author 黄浩
  */

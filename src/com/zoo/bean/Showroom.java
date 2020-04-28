@@ -1,5 +1,5 @@
 package com.zoo.bean;
-/*
+/**
 展厅的实体类
 @author 黄浩
  */

@@ -1,5 +1,5 @@
 package com.zoo.view;
-/*
+/**
 界面的封装
 @author 黄浩
  */

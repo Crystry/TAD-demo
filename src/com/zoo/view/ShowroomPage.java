@@ -1,5 +1,5 @@
 package com.zoo.view;
-/*
+/**
 游客界面
 显示展厅的信息，选择要参观的展厅，进行参观
 @author 黄浩

@@ -1,5 +1,5 @@
 package com.zoo.util;
-/*
+/**
 连接数据库
 @author 黄浩
  */

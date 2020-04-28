@@ -1,5 +1,5 @@
 package com.zoo.model;
-/*
+/**
 用户的增删改查，对数据库的操作
 @author 黄浩
  */

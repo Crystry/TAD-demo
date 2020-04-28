@@ -1,5 +1,5 @@
 package com.zoo.view;
-/*
+/**
 注册界面
 @author 黄浩
  */
