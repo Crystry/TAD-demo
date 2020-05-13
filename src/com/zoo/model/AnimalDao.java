@@ -8,6 +8,7 @@ import com.zoo.bean.Animal;
 import com.zoo.util.ZooUtil;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class AnimalDao {
@@ -70,10 +71,10 @@ public class AnimalDao {
         PreparedStatement preparedStatement = null;
         String sql = "" +
                 " delete from animal " +
-                " where AnimalName=? ";
+                " where AnimalName="+ animalName;
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, animalName);
+           // preparedStatement.setString(1, animalName);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,6 +91,7 @@ public class AnimalDao {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(" select * from animal ");
         stringBuilder.append(" where AnimalType=? ");
+
         List<Animal> animal = new ArrayList<>();
         try {
             preparedStatement = connection.prepareStatement(stringBuilder.toString());

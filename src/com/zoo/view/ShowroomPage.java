@@ -22,7 +22,7 @@ public class ShowroomPage {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root);
         //顶部，游客选择想要查询的展厅
-        ChoiceBox choiceBox=new ChoiceBox();
+        ChoiceBox<String> choiceBox=new ChoiceBox<String>();
         choiceBox.setItems(FXCollections.observableArrayList(
                 "Panda","Bear","Tiger","Rabbit","Wolf"));
         choiceBox.setTooltip(new Tooltip("请选择展厅！"));
